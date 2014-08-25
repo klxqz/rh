@@ -1,0 +1,92 @@
+<link rel="stylesheet" type="text/css" href="{$wa_app_static_url}plugins/rh/css/rh.css?{$wa->version()}">
+<h1>RedHelper</h1>
+<img class="logo" src="{$wa_app_static_url}plugins/rh/img/logo.png">
+
+<h2>Что такое RedHelper?</h2>
+<p>RedHelper - это система онлайн-консультироания для Интернет сайтов. Самый популярный сервис для увеличения конверсии и продаж.</p>
+<p>Информация о RedHelper на <a target="_blank" href="http://redhelper.ru/?p=2004266">сайте компании</a></p>
+
+<hr/>
+<div class="fields form">
+    <form action="?plugin=rh&action=saveSettings" method="post" id="plugins-settings-form">
+        {$wa->csrf()}
+        <div class="field-group">
+            <div class="field">
+                <div class="name">
+                    Статус плагина
+                </div>
+                <div class="value">
+                    <select name="shop_rh[status]">
+                        <option {if $settings.status == 1} selected="selected"{/if} value="1">Включен</option>
+                        <option {if $settings.status == 0} selected="selected"{/if} value="0">Выключен</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="field-group">
+            <h2>Установка. Шаг 1 из 2.</h2>
+            <p>Для работы плагина необходим Ваш логин в системе RedHelper</p>
+            <p>Вам необходимо выбрать вариант подключения:</p>
+            <ul>
+                <li>Существующий аккаунт в системе RedHelper(Если Вы знаете свой логин в системе, введите его)</li>
+                <li>Нажмите "ЗАРЕГИСТРИРУЙТЕСЬ" и создать новый аккаунт в RedHelper</li>
+            </ul>
+            <div class="field">
+                <div class="name">
+                    Логин.
+                    Укажите Ваш логин в системе RedHelper
+                </div>
+                <div class="value">
+                    <input type="text" name="shop_rh[login]" value="{$settings.login|escape}"  /> или <a id="registration-bt" href="#">ЗАРЕГИСТРИРУЙТЕСЬ</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="field-group" id="wizard">
+            <h2>Установка. Шаг 2 из 2.</h2>
+            <div class="content">
+                <p>Теперь необходимо скачать и установить приложение оператора. Приложение оператора позволяет наблюдать за посетителями, отвечать на их вопросы и многое другое. Приложение под Windows или Mac OS вы можете скачать нажав на кнопку ниже. Для других операционных систем и мобильных устройств вы можете использовать любой jabber клиент (<a target="_blank" href="https://redhelper.zendesk.com/forums/21556502-jabber-redhelper">как это сделать?</a>).</p>
+                <div class="button-green">
+                    <a class="download-link" href="http://update.redhelper.ru/RedHelperSetup.ru-RU.exe">СКАЧАТЬ ДЛЯ WINDOWS</a>
+                </div>
+                <div class="button-green silver">
+                    <a class="download-link" href="http://update.redhelper.ru/RedHelper.dmg">СКАЧАТЬ ДЛЯ MAC OS</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="field-group">
+            <h2>Настройка системы после установки</h2>
+            <p>Всё готово для использования RedHelper на вашем сайте, но для максимальной эффективности работы системы необходимо произвести настройку внешнего вида и поведения RedHelper для вашего сайта.<br/>Это можно сделать на странице Настройки в личном кабинете.</p>
+
+            <a target="_blank" class="button-settings" href="https://redhelper.ru/my/settings/">Перейти в личный кабинет</a>
+            <br/><br/>
+            <p>Рекомендуем настроить следующие параметры:</p>
+            <ul>
+                <li>Внешний вид значка "Задать вопрос"</li>
+                <li>Внешний вид окна диалога</li>
+                <li>Офлайн форма (запросы от пользователей на почту)</li>
+                <li>Активное приглашение посетителя</li>
+                <li>Загрузить персональное фото оператора</li>
+                <li>Настройте отделы и сайты</li>
+            </ul>
+
+        </div>
+
+        <div class="field">
+            <div class="value submit">
+                <input type="submit" class="button green" value="Сохранить">
+                <span id="plugins-settings-form-status" style="display:none">
+                    <i style="vertical-align:middle" class="icon16 yes"></i> [`Saved`]
+                </span>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="{$wa_app_static_url}plugins/rh/js/rh.js?{$wa->version()}"></script>
+<script type="text/javascript">
+    $(function() {
+        $.rh.init();
+    });
+</script>

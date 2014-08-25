@@ -1,0 +1,59 @@
+.logo{
+    display: block;
+    margin: 10px 0px;
+}
+.content hr{
+    clear: none;
+}
+.button-green{
+    float:left;
+    margin-right: 30px;
+}
+.button-green a {
+    display: inline-block;
+    background: #0da61f url("../img/win-green.png") no-repeat 10px 12px;
+    min-width: 80px;
+    padding: 12px 12px 10px 40px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px #AAA;
+    font-family: Proxima-semibold, sans-serif;
+    font-size: 20px;
+    text-shadow: 1px 1px 1px #999;
+}
+.button-green a:hover {
+    background: #10b020 url("../img/win-green.png") no-repeat 10px 12px;
+    color: #fff !important;
+}
+.button-green.silver a{
+    background: url("../img/mac.png") no-repeat scroll 14px 14px #6a6a6a;
+    text-shadow: 1px 1px 0 #4f4f4f;
+}
+.button-green.silver a:hover {
+    background: url("../img/mac.png") no-repeat scroll 14px 14px #7a7a7a;
+}
+#wizard .content {
+    display: table;
+    background: #eee;
+    padding: 20px;
+    border-radius: 4px;
+    margin: 0 0 0 -10px;
+    position: relative;
+    width: 850px;
+    box-shadow: 0 1px 2px #ccc;
+}
+
+.button-settings{
+    display: inline-block;
+    background: #7a7a7a;
+    min-width: 80px;
+    padding: 12px 12px 10px 10px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px #AAA;
+    font-family: Proxima-semibold, sans-serif;
+    font-size: 20px;
+    text-shadow: 1px 1px 1px #999;
+}

@@ -1,0 +1,142 @@
+<style>
+    .required{
+        color: red;
+        font-weight: bold;
+    }
+    label.error{
+        margin-left: 10px;
+        color:red;
+        font-style: italic;
+    }
+    label.success{
+        margin-left: 20px;
+        color: green;
+        font-weight: bold;
+    }
+    
+</style>
+<script type="text/javascript" src="{$wa_app_static_url}plugins/rh/js/jquery.validate.min.js?{$wa->version()}"></script>
+<div class="dialog small" id="registration-dialog">
+    <div class="dialog-background"></div>
+    <form id="registration-form" method="post" action="https://redhelper.ru/my/register/" >
+        <input type="hidden" name="locale" value="ru"/>
+        <input type="hidden" name="ref" value="2004266"/>
+        <div class="dialog-window">
+            <div class="dialog-content">
+                <div class="dialog-content-indent">
+                    <h1>Регистрация в системе RedHelper</h1>
+                    <div class="fields form s-dialog-form">
+                        <div class="field-group">
+                            <div class="field">
+                                <div class="name">Логин<span class="required">*</span></div>
+                                <div class="value">
+                                    <input id="login" type="text" value="" name="login">
+                                    <p class="hint">Придумайте свой уникальный логин. Логин может состоять только из латинских букв и цифр, сам логин должен быть не короче 3 символов.</p>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="name">Email<span class="required">*</span></div>
+                                <div class="value">
+                                    <input id="email" type="text" value="" name="email">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="name">Пароль<span class="required">*</span></div>
+                                <div class="value">
+                                    <input id="password" type="password" value="" name="password">
+                                    <p class="hint">Придумайте пароль для подключения сервиса RedHelper. В целях безопасности пароль должен отличаться от пароля Webasyst.</p>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="name">Подтверждение пароля<span class="required">*</span></div>
+                                <div class="value">
+                                    <input id="confirm_password" type="password" value="" name="confirm_password">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="response"></div>
+
+            </div>
+            <div class="dialog-buttons">
+                <div class="dialog-buttons-gradient">
+                    <input type="submit" value="Зарегистрироваться" class="button green">
+                    или <a class="cancel" href="#">отмена</a>
+                    <span id="dialog-response"></span>
+                </div>
+            </div>
+            {$wa->csrf()}
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+
+    $("#registration-form").validate({
+        rules: {
+            login: {
+                required: true,
+                minlength: 3
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            password: {
+                required: true,
+                minlength: 6
+            },
+            confirm_password: {
+                required: true,
+                minlength: 6,
+                equalTo: "#password"
+            },
+        },
+        messages: {
+            login: {
+                required: "Пожалуйста, укажите логин",
+                minlength: "Логин должен быть не короче 3 символов"
+            },
+            email: "Пожалуйста, укажите корректный Email",
+            password: {
+                required: "Пожалуйста, укажите пароль",
+                minlength: "Пароль должен быть не короче 6 символов"
+            },
+            confirm_password: {
+                required: "Пожалуйста, подтвержтите пароль",
+                minlength: "Пароль должен быть не короче 6 символов",
+                equalTo: "Введенные пароли не совпадают"
+            },
+        },
+        submitHandler: function() {
+            var form = $('#registration-form');
+            $('.response-msg').remove();
+            $.ajax({
+                type: 'POST',
+                url: form.attr('action'),
+                data: form.serialize(),
+                crossDomain: true,
+                success: function(data, textStatus, jqXHR) {
+                    switch (data) {
+                        case 'login incorrect':
+                            $('#login').after('<label class="response-msg error">Логин некоректный</label>');
+                            break;
+                        case 'exist':
+                            $('#login').after('<label class="response-msg error">Указанный логин занят. Пожалуйста, придумайте другой логин.</label>');
+                            break;
+                        case 'success':
+                            $('#response').html('<label class="response-msg success">Регистрация прошла успешно.</label>');
+                            break;
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    $('#response').html('<label class="response-msg error">Ошибка отправки запроса.</label>');
+                }
+            });
+
+        }
+
+    });
+</script>
