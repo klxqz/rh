@@ -4,10 +4,11 @@ class shopRhPlugin extends shopPlugin {
 
     public function frontendHead() {
         if ($this->getSettings('status') && ($login = $this->getSettings('login'))) {
-            $view = wa()->getView();
-            $view->assign('login', $login);
-            $template_path = wa()->getAppPath('plugins/rh/templates/actions/frontend/FrontendHead.html', 'shop');
-            $html = $view->fetch($template_path);
+            $html = <<<HTML
+<!-- RedHelper -->
+<script id="rhlpscrtg" type="text/javascript" charset="utf-8" async="async" src="https://web.redhelper.ru/service/main.js?c={$login}"></script> 
+<!--/Redhelper -->
+HTML;
             return $html;
         }
     }
