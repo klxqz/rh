@@ -27,10 +27,23 @@
                     <div class="fields form s-dialog-form">
                         <div class="field-group">
                             <div class="field">
+                                <div class="name">ФИО</div>
+                                <div class="value">
+                                    <input id="fio" type="text" value="{$wa->shop->settings('name')|escape}" name="contactfio">
+                                </div>
+                            </div>
+                            <div class="field">
                                 <div class="name">Логин<span class="required">*</span></div>
                                 <div class="value">
                                     <input id="login" type="text" value="" name="login">
                                     <p class="hint">Придумайте свой уникальный логин. Логин может состоять только из латинских букв и цифр, сам логин должен быть не короче 3 символов.</p>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="name">Телефон<span class="required">*</span></div>
+                                <div class="value">
+                                    <input id="contactphone" type="text" value="{$wa->shop->settings('phone')|escape}" name="contactphone">
+                                    <p  class="hint">Укажите Ваш номер телефона. Желательно указать номер в формате: 8 111 111 11 11</p>
                                 </div>
                             </div>
                             <div class="field">
@@ -83,6 +96,9 @@
                 required: true,
                 email: true
             },
+            contactphone: {
+                required: true
+            },
             password: {
                 required: true,
                 minlength: 6
@@ -99,6 +115,7 @@
                 minlength: "Логин должен быть не короче 3 символов"
             },
             email: "Пожалуйста, укажите корректный Email",
+            contactphone: "Пожалуйста, укажите номер телефона",
             password: {
                 required: "Пожалуйста, укажите пароль",
                 minlength: "Пароль должен быть не короче 6 символов"

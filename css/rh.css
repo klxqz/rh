@@ -44,9 +44,9 @@
     box-shadow: 0 1px 2px #ccc;
 }
 
-.button-settings{
+a.button-settings{
     display: inline-block;
-    background: #7a7a7a;
+    background: #6a6a6a;
     min-width: 80px;
     padding: 12px 12px 10px 10px;
     text-decoration: none;
@@ -56,6 +56,10 @@
     font-family: Proxima-semibold, sans-serif;
     font-size: 20px;
     text-shadow: 1px 1px 1px #999;
+}
+a.button-settings:hover{
+    background: #7a7a7a;
+    color: #fff !important;
 }
 .plugin-menu{
     float: right;
